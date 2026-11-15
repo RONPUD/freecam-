@@ -3,7 +3,7 @@ package com.example.freecam.mixin;
 import com.example.freecam.Freecam;
 import net.minecraft.client.render.Camera;
 import net.minecraft.entity.Entity;
-import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -21,7 +21,7 @@ public abstract class CameraMixin {
 
 	/** After vanilla positions the camera, overwrite it with the freecam position. */
 	@Inject(method = "update", at = @At("TAIL"))
-	private void freecam$update(BlockView area, Entity focusedEntity, boolean thirdPerson,
+	private void freecam$update(World area, Entity focusedEntity, boolean thirdPerson,
 								boolean inverseView, float tickDelta, CallbackInfo ci) {
 		if (!Freecam.isEnabled()) {
 			return;
